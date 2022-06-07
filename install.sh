@@ -438,14 +438,11 @@ do_install() {
 						pkgs="$pkgs docker-ce-cli${cli_pkg_version%=} containerd.io"
 				fi
 				if version_gte "20.10"; then
-						pkgs="$pkgs docker-compose-plugin"
+						pkgs="$pkgs docker-buildx-plugin docker-compose-plugin"
 				fi
 				if version_gte "20.10" && [ "$(uname -m)" = "x86_64" ]; then
 						# also install the latest version of the "docker scan" cli-plugin (only supported on x86 currently)
 						pkgs="$pkgs docker-scan-plugin"
-				fi
-				if version_gte "22.06"; then
-						pkgs="$pkgs docker-buildx-plugin"
 				fi
 				if ! is_dry_run; then
 					set -x
@@ -537,10 +534,7 @@ do_install() {
 						pkgs="$pkgs docker-scan-plugin"
 				fi
 				if version_gte "20.10"; then
-					pkgs="$pkgs docker-compose-plugin docker-ce-rootless-extras$pkg_version"
-				fi
-				if version_gte "22.06"; then
-						pkgs="$pkgs docker-buildx-plugin"
+					pkgs="$pkgs docker-buildx-plugin docker-compose-plugin docker-ce-rootless-extras$pkg_version"
 				fi
 				if ! is_dry_run; then
 					set -x
@@ -620,10 +614,7 @@ do_install() {
 					fi
 				fi
 				if version_gte "20.10"; then
-					pkgs="$pkgs docker-compose-plugin docker-ce-rootless-extras$pkg_version"
-				fi
-				if version_gte "22.06"; then
-						pkgs="$pkgs docker-buildx-plugin"
+					pkgs="$pkgs docker-buildx-plugin docker-compose-plugin docker-ce-rootless-extras$pkg_version"
 				fi
 				if ! is_dry_run; then
 					set -x
